@@ -11,11 +11,11 @@ interface ContactInfo {
 const contacts_prod: ContactInfo[] = [
   {
     name: 'Jonni',
-    address: ''
+    address: 'jonni@resend.com'
   },
   {
     name: 'Brian',
-    address: ''
+    address: 'brian@resend.com'
   }
 ]
 
@@ -30,22 +30,26 @@ export async function POST() {
   const contacts = process.env.RESEND_ENV === 'PROD' ? contacts_prod : contacts_dev;
 
   try {
-  for (const contact of contacts) {
+    for (const contact of contacts) {
 
-    const { error } = await resend.emails.send({
-      from: 'paulogdm <me@resend-dev.paulogdm.com>',
-      replyTo: 'me@paulogdm.com',
-      to: contact.address,
-      subject: 'Paulo De Mitri - Delivery of Take Home',
-      react: EmailBody({name: contact.name}),
-      // TODO: do not forget attachment.
-    });
+      const { error } = await resend.emails.send({
+        from: 'paulogdm <me@resend-dev.paulogdm.com>',
+        replyTo: 'me@paulogdm.com',
+        to: contact.address,
+        subject: 'Paulo De Mitri - Delivery of Take Home',
+        react: EmailBody({name: contact.name}),
+          attachments: [
+          { 
+            "content": // should be base64,
+            "filename": "send.png"
+          }
+        ]
+      });
 
-    if (error) {
-      return Response.json({ error }, { status: 500 });
+      if (error) {
+        return Response.json({ error }, { status: 500 });
+      }
     }
-  }
-
     return Response.json({success: true});
   } catch (error) {
     return Response.json({ error }, { status: 500 });
