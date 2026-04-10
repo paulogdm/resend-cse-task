@@ -1,5 +1,7 @@
 import { Resend } from 'resend';
 import EmailBody from '@/emails/2026-04-10_delivery';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -28,6 +30,7 @@ const contacts_dev: ContactInfo[] = [
 
 export async function POST() {
   const contacts = process.env.RESEND_ENV === 'PROD' ? contacts_prod : contacts_dev;
+  const sendPng = fs.readFileSync(path.join(process.cwd(), 'emails', 'send.png')).toString('base64');
 
   try {
     for (const contact of contacts) {
@@ -40,7 +43,7 @@ export async function POST() {
         react: EmailBody({name: contact.name}),
           attachments: [
           { 
-            "content": // should be base64,
+            "content": sendPng,
             "filename": "send.png"
           }
         ]
