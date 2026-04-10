@@ -1,13 +1,13 @@
 ## What Is This?
 
-This repository contains a small demo of `react-email` and (Resend.com)[https://resend.com] in a Next.js app.
+This repository contains a small demo of `react-email` and [Resend.com](https://resend.com) in a Next.js app with Pages Router.
 
 You can also check the tickets deliverable 🔐 [in this link](https://www.notion.so/paulogdm/Paulo-De-Mitri-Resend-CSE-Take-Home-Challenge-33d9ff9fd6ce80088953d13e7d28f9a7?source=copy_link).
 
 ## Tutorial
 
 > [!NOTE]  
-> Before starting, please ensure that `node` ([How do I install Node?](https://nodejs.org/en/download)) and `pnpm` ([How do I install PNPM?](https://pnpm.io/installation)) are installed in your system.
+> Before starting, please ensure that `node` ([how do I install Node?](https://nodejs.org/en/download)) and `pnpm` ([how do I install PNPM?](https://pnpm.io/installation)) are installed in your system.
 
 **Creating the Next.js app**
 
